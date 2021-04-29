@@ -1,0 +1,25 @@
+service: serverless-nest
+app: serverless-nest
+
+plugins:
+  - '@hewmen/serverless-plugin-typescript'  
+  - serverless-plugin-optimize
+  - serverless-offline
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+package:
+  individually: true
+
+functions:
+  nest:
+    handler: src/main.handler
+    events:
+      - http:
+          method: any
+          path: /{any+}
